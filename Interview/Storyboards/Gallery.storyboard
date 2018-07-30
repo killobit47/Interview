@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vT0-1k-qnC">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="H7w-iV-86V">
+            <objects>
+                <navigationController id="vT0-1k-qnC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PJh-vd-8h9">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Gxy-Rf-iRM" kind="relationship" relationship="rootViewController" id="bcb-W3-xdp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuH-rF-7lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1023" y="1659"/>
+        </scene>
+        <!--Home Page-->
+        <scene sceneID="qXh-7G-pVY">
+            <objects>
+                <viewController id="Gxy-Rf-iRM" customClass="HomeViewController" customModule="Interview" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1zx-H6-Eg5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v1c-rm-yUS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tdJ-8e-6vf">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7uY-mh-UQN">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Gxy-Rf-iRM" id="ocy-tp-Jmn"/>
+                                    <outlet property="delegate" destination="Gxy-Rf-iRM" id="hHa-9g-BEc"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="v1c-rm-yUS" firstAttribute="top" secondItem="WOr-Zr-dEY" secondAttribute="top" id="9NQ-6S-xF5"/>
+                            <constraint firstItem="v1c-rm-yUS" firstAttribute="leading" secondItem="WOr-Zr-dEY" secondAttribute="leading" id="Z82-t3-Ybq"/>
+                            <constraint firstItem="WOr-Zr-dEY" firstAttribute="trailing" secondItem="v1c-rm-yUS" secondAttribute="trailing" id="aBZ-7F-XIg"/>
+                            <constraint firstItem="WOr-Zr-dEY" firstAttribute="bottom" secondItem="v1c-rm-yUS" secondAttribute="bottom" id="nu2-3k-a2S"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WOr-Zr-dEY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home Page" id="zAx-dQ-H8z">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="qhM-66-pyF">
+                                <connections>
+                                    <segue destination="YEI-3w-PNN" kind="show" identifier="gallery.toAddNewImage" id="F4b-cX-g4K"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="play" id="dpd-eC-Axe">
+                                <connections>
+                                    <action selector="didTapPlayButton:" destination="Gxy-Rf-iRM" id="aJq-zM-b67"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="v1c-rm-yUS" id="Z7m-IB-mbd"/>
+                        <segue destination="G7H-Nx-BRD" kind="presentation" identifier="gallery.toViewGif" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="Nde-OG-NSx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dj3-9N-3ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-9" y="1661"/>
+        </scene>
+        <!--View gif-->
+        <scene sceneID="v8x-Cu-cy5">
+            <objects>
+                <viewController title="View gif" id="G7H-Nx-BRD" customClass="GifViewerViewController" customModule="Interview" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eXv-Aq-jgv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyf-jk-XIE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Q2d-K6-H8x">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T1e-wp-YZh" customClass="GIFImageView" customModule="Gifu">
+                                <rect key="frame" x="37.5" y="221" width="300" height="225"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="T1e-wp-YZh" secondAttribute="height" multiplier="4:3" id="ghV-qk-uyT"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ax2-a6-V1M">
+                                <rect key="frame" x="36" y="56" width="32" height="30"/>
+                                <state key="normal" title="Hide"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.67000000000000004" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wyf-jk-XIE" firstAttribute="top" secondItem="eXv-Aq-jgv" secondAttribute="top" id="16T-sB-Cx4"/>
+                            <constraint firstItem="Ax2-a6-V1M" firstAttribute="leading" secondItem="LOI-ZO-Cgm" secondAttribute="leading" constant="36" id="4Sg-ik-raJ"/>
+                            <constraint firstAttribute="bottom" secondItem="wyf-jk-XIE" secondAttribute="bottom" id="77y-gh-Nz3"/>
+                            <constraint firstItem="wyf-jk-XIE" firstAttribute="leading" secondItem="LOI-ZO-Cgm" secondAttribute="leading" id="CvU-bH-yk0"/>
+                            <constraint firstItem="T1e-wp-YZh" firstAttribute="centerY" secondItem="eXv-Aq-jgv" secondAttribute="centerY" id="Hhj-ie-0dq"/>
+                            <constraint firstItem="T1e-wp-YZh" firstAttribute="centerX" secondItem="eXv-Aq-jgv" secondAttribute="centerX" id="N84-GL-Z4l"/>
+                            <constraint firstAttribute="trailing" secondItem="wyf-jk-XIE" secondAttribute="trailing" id="bMO-HF-FRT"/>
+                            <constraint firstItem="T1e-wp-YZh" firstAttribute="centerX" secondItem="eXv-Aq-jgv" secondAttribute="centerX" id="hz8-gc-94o"/>
+                            <constraint firstItem="T1e-wp-YZh" firstAttribute="width" secondItem="eXv-Aq-jgv" secondAttribute="width" multiplier="0.8" id="s9Z-lW-X6g"/>
+                            <constraint firstItem="Ax2-a6-V1M" firstAttribute="top" secondItem="LOI-ZO-Cgm" secondAttribute="top" constant="36" id="z8G-PN-01w"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LOI-ZO-Cgm"/>
+                    </view>
+                    <connections>
+                        <outlet property="gifImageView" destination="T1e-wp-YZh" id="sed-YA-Pzy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddZ-ZV-pvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10" y="2479"/>
+        </scene>
+        <!--Add new image-->
+        <scene sceneID="IsA-K3-IS4">
+            <objects>
+                <viewController title="Add new image" id="YEI-3w-PNN" customClass="AddPictureViewController" customModule="Interview" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="628-mj-4yt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pwe-nt-Ftc">
+                                <rect key="frame" x="62.5" y="80" width="250" height="326"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="FuP-Ev-kKO">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="FuP-Ev-kKO" secondAttribute="height" multiplier="1:1" id="kFx-9h-rKM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="gcp-It-4SU" appends="YES" id="dNF-8I-i4f"/>
+                                        </connections>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fqg-YB-PVq">
+                                        <rect key="frame" x="0.0" y="258" width="250" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="YEI-3w-PNN" id="NQI-uJ-Lcj"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#hashtag" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TNo-vl-t7V">
+                                        <rect key="frame" x="0.0" y="296" width="250" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="YEI-3w-PNN" id="g3F-24-b9o"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Pwe-nt-Ftc" firstAttribute="centerX" secondItem="628-mj-4yt" secondAttribute="centerX" id="LT7-sE-aDK"/>
+                            <constraint firstItem="Pwe-nt-Ftc" firstAttribute="top" secondItem="Ach-x0-CQg" secondAttribute="top" constant="16" id="TrL-kC-OWx"/>
+                            <constraint firstItem="Pwe-nt-Ftc" firstAttribute="width" secondItem="628-mj-4yt" secondAttribute="width" multiplier="1:1.5" id="ZrO-VA-dLc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ach-x0-CQg"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="iCM-b6-sN9">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="x4X-4K-CVg">
+                            <connections>
+                                <action selector="didTapDoneButton:" destination="YEI-3w-PNN" id="bAE-rG-IR2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="fqg-YB-PVq" id="V96-os-j2X"/>
+                        <outlet property="hashtagTextField" destination="TNo-vl-t7V" id="Yd3-Y5-bhc"/>
+                        <outlet property="imageView" destination="FuP-Ev-kKO" id="Mkq-uf-VWr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wn9-ql-tef" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gcp-It-4SU">
+                    <connections>
+                        <action selector="didTapImageView:" destination="YEI-3w-PNN" id="4il-ZV-Zjz"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1082" y="1660"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="placeholder" width="1040" height="584"/>
+    </resources>
+</document>
