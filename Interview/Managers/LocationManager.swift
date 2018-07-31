@@ -46,7 +46,7 @@ class LocationManager: NSObject, Router {
     
     func startUpdatingLocation() {
         checkCLPermission { [weak self] (authorized) in
-            if (authorized) {
+            if authorized {
                 self?.manager.startUpdatingLocation()
             } else {
                 self?.openApplicationSettings()
@@ -57,15 +57,17 @@ class LocationManager: NSObject, Router {
     func getLocation(_ completion: @escaping(getLocationBlock)) {
         locationBlock = completion
     }
-    
 }
 
 extension LocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let block = locationBlock, let location = locations.last {
-            block(location)
-            locationBlock = nil
+        if let location = locations.last {
+            lastLocation = location
+            if let block = locationBlock {
+                block(location)
+                locationBlock = nil
+            }
         }
     }
     
@@ -81,5 +83,4 @@ extension LocationManager: CLLocationManagerDelegate {
             }
         }
     }
-    
 }

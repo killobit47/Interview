@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Gifu
 
 let GalleryCollectionViewCellID = "GalleryCollectionViewCell"
 
 class GalleryCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var gImageView: GIFImageView!
     
     @IBOutlet weak var weatherLabel: UILabel!
     
@@ -21,6 +22,11 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    override func prepareForReuse() {
+        gImageView.stopAnimatingGIF()
+        gImageView.image = nil
     }
 
     class func cellNIB() -> UINib {

@@ -6,9 +6,11 @@ target 'Interview' do
   use_frameworks!
 
   pod 'Alamofire', '~> 4.7'
+  pod 'CodableAlamofire'
   pod 'Nuke', '~> 7.0'
   pod 'Gifu', '~> 3.1'
   pod 'IQKeyboardManagerSwift'
+  pod 'JGProgressHUD'
 
   # Pods for Interview
 

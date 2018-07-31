@@ -20,23 +20,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="368" height="307"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="K5K-1j-dzz">
-                        <rect key="frame" x="0.0" y="0.0" width="368" height="307"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="K5K-1j-dzz">
+                        <rect key="frame" x="8" y="8" width="352" height="291"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-Xb-5QE">
-                                <rect key="frame" x="0.0" y="0.0" width="368" height="204.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-Xb-5QE" customClass="GIFImageView" customModule="Gifu">
+                                <rect key="frame" x="0.0" y="0.0" width="352" height="195.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tqC-Xb-5QE" secondAttribute="height" multiplier="1.8:1" id="D5L-KM-d0f"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tI-rS-XwB">
-                                <rect key="frame" x="0.0" y="235.5" width="64.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4tI-rS-XwB">
+                                <rect key="frame" x="0.0" y="201.5" width="64.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UnN-hY-VAe">
-                                <rect key="frame" x="0.0" y="286.5" width="65.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="100" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UnN-hY-VAe">
+                                <rect key="frame" x="0.0" y="231.5" width="65.5" height="59.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,17 +45,17 @@
                     </stackView>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="K5K-1j-dzz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Hma-L8-dES"/>
-                <constraint firstAttribute="trailing" secondItem="K5K-1j-dzz" secondAttribute="trailing" id="XF8-8v-wbD"/>
-                <constraint firstAttribute="bottom" secondItem="K5K-1j-dzz" secondAttribute="bottom" id="eKi-UX-eyC"/>
-                <constraint firstItem="K5K-1j-dzz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fP5-Io-Mhn"/>
-                <constraint firstItem="tqC-Xb-5QE" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="lY4-8p-5vl"/>
+                <constraint firstItem="K5K-1j-dzz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Hma-L8-dES"/>
+                <constraint firstAttribute="trailing" secondItem="K5K-1j-dzz" secondAttribute="trailing" constant="8" id="XF8-8v-wbD"/>
+                <constraint firstAttribute="bottom" secondItem="K5K-1j-dzz" secondAttribute="bottom" constant="8" id="eKi-UX-eyC"/>
+                <constraint firstItem="K5K-1j-dzz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="fP5-Io-Mhn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="368" height="307"/>
             <connections>
-                <outlet property="imageView" destination="tqC-Xb-5QE" id="glx-Ab-Wzx"/>
+                <outlet property="gImageView" destination="tqC-Xb-5QE" id="KoG-WN-kxD"/>
                 <outlet property="locationLabel" destination="UnN-hY-VAe" id="hdc-Qo-pSA"/>
                 <outlet property="weatherLabel" destination="4tI-rS-XwB" id="Gc5-oE-ifs"/>
             </connections>

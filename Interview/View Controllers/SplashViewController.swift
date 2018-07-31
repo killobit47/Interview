@@ -13,11 +13,11 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let token = ApiManager.loadToken()
+        let token = APIManager.loadToken()
         if let _ = token {
-            performSegue(withIdentifier: "splashView.toHomeView", sender: nil)
+            performSegue(withIdentifier: Segue.splashViewSegue.toHomeView.rawValue, sender: nil)
         } else {
-            performSegue(withIdentifier: "splashView.toLoginView", sender: nil)
+            performSegue(withIdentifier: Segue.splashViewSegue.toLoginView.rawValue, sender: nil)
         }
     }
 }

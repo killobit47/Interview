@@ -8,6 +8,24 @@
 
 import UIKit
 
+enum Segue {    
+    enum splashViewSegue: String {
+        case toHomeView = "splashView.toHomeView"
+        case toLoginView = "splashView.toLoginView"
+    }
+    enum loginSegue:String {
+        case toSignUp = "login.toSignUp"
+        case toGallery = "login.toGallery"
+    }
+    enum siginSegue: String {
+      case toGallery = "sigin.toGallery"
+    }
+    enum gallerySegue: String {
+        case toAddNewImage = "gallery.toAddNewImage"
+        case toViewGif = "gallery.toViewGif"
+    }
+}
+
 protocol Router {}
 
 extension Router {
@@ -33,10 +51,20 @@ extension Router {
     }
     
     func openApplicationSettings() {
-        if let url = URL.init(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.open(url)
         }
     }
     
+    func lounchSplashView() {
+        APIManager.clearToken()
+        let sViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SplashViewController")
+        topViewController.present(sViewController, animated: true, completion: nil)
+    }
+}
+
+class RoutManager: Router {
+    
+    static let shared = RoutManager()
     
 }

@@ -20,8 +20,4 @@ extension String {
         return self.count >= 6
     }
     
-    var isValidUsername: Bool {
-        return self.count >= 2
-    }
-    
 }

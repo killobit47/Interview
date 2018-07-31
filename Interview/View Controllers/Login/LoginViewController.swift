@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class LoginViewController: UIViewController {
 
@@ -22,29 +23,21 @@ class LoginViewController: UIViewController {
     @IBAction func didTapLoginButton(_ sender: Any) {
     
         if let email = emailTextField.text, let password = passwordTextField.text, email.isEmail, password.isValidPass {
-            
-            let param = ["email": email,
-                         "password": password]
-            
-            ApiManager.request(.login, param) { [weak self] (response, success, error) in
-                
-                if !success, let error = error {
-                    self?.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
-                } else if let response = response as? [String: Any] {
-                    if let errorMessage = response["error"] as? String {
-                        self?.showAlert(withTitle: "Error", andMessage: errorMessage)
-                    } else if let token = response["token"] as? String {
-                        ApiManager.saveToken(token)
-                        self?.performSegue(withIdentifier: "login.toGallery", sender: nil)
-                    }
-                } else {
-                    self?.showAlert(withTitle: "Error", andMessage: "Something went wrong.")
+            let hud = JGProgressHUD(style: .dark)
+            hud.textLabel.text = "I log in."
+            hud.show(in: self.view)
+            APIManager.login(email: email, password: password) { [weak self] (user, error) in
+                if let error = error {
+                    hud.textLabel.text = "Error"
+                    hud.detailTextLabel.text = error.localizedDescription
+                    hud.dismiss(afterDelay: 4, animated: true)
+                } else if let _ = user {
+                    hud.dismiss(animated: true)
+                    self?.performSegue(withIdentifier: Segue.loginSegue.toGallery.rawValue, sender: nil)
                 }
-                
             }
         } else {
             showAlert(withTitle: "Warning", andMessage: "Wrong password or email.")
         }
     }
-    
 }

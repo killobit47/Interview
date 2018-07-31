@@ -12,7 +12,6 @@ import Gifu
 class GifViewerViewController: UIViewController {
 
     @IBOutlet weak var gifImageView: GIFImageView!
-    
     public var gifLink: URL?
     
     override func viewDidLoad() {
@@ -22,5 +21,8 @@ class GifViewerViewController: UIViewController {
             gifImageView.animate(withGIFURL: url)
         }
     }
-   
+    
+    @IBAction func didTapHideButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }

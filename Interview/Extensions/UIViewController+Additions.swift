@@ -13,6 +13,7 @@ extension UIViewController {
     
     typealias completion = (_ weather: String) -> Void
 
+   
     
     func showAlert(withTitle title: String ,andMessage message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -36,8 +37,7 @@ extension UIViewController {
         }))
 
         self.present(alert, animated: true, completion: nil)
-
-        
     }
+    
     
 }

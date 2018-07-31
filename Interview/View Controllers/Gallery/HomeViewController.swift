@@ -8,41 +8,89 @@
 
 import UIKit
 import Nuke
+import Gifu
+import JGProgressHUD
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var topSegmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    var images: [[String: Any]] = [] {
+    let refreshControl = UIRefreshControl()
+
+    var images: [GImage] = [] {
         didSet {
-            collectionView.reloadData()
+            if topSegmentedControl.selectedSegmentIndex == 0 {
+                collectionView.reloadData()
+            }
+        }
+    }
+    
+    var gifs: [GGif] = [] {
+        didSet {
+            if topSegmentedControl.selectedSegmentIndex == 1 {
+                collectionView.reloadData()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         collectionView.register(GalleryCollectionViewCell.cellNIB(), forCellWithReuseIdentifier: GalleryCollectionViewCellID)
-        
-        ApiManager.request(.all, nil) { [weak self] (responseObject, success, error) in
-            
-            if let response = responseObject as? [String: [[String: Any]]], let images = response["images"] {
-                self?.images = images
-            } else {
-                self?.showAlert(withTitle: "Error", andMessage: "Something went wrong.")
+        NotificationCenter.default.addObserver(self, selector:  #selector(HomeViewController.refresh), name: NeedsRefteshCollectionViewNotification, object: nil)
+        setUPUI()
+        refresh()
+    }
+    
+    func setUPUI() {
+        collectionView!.alwaysBounceVertical = true
+        refreshControl.addTarget(self, action: #selector(HomeViewController.refresh), for: .valueChanged)
+        collectionView!.addSubview(refreshControl)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    //MARK: - Actions
+    
+    @objc func refresh() {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Loading..."
+        hud.show(in: self.view)
+        APIManager.loadAllPhotos { [weak self] (gallery, error) in
+            if let error = error {
+                hud.textLabel.text = "Error"
+                hud.detailTextLabel.text = error.localizedDescription
+                hud.dismiss(afterDelay: 4, animated: true)
+            } else if let gallery = gallery {
+                hud.dismiss(afterDelay: 1, animated: true)
+                self?.images = gallery.images
+                self?.gifs = gallery.gifs
             }
-            
+            self?.refreshControl.endRefreshing()
         }
-        
-        // Do any additional setup after loading the view.
     }
 
+    @IBAction func didChangeValueTopSegmentedControl(_ sender: UISegmentedControl) {
+        collectionView.reloadData()
+        collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
     @IBAction func didTapPlayButton(_ sender: Any) {
         
         showAlertWithTextField { (weather) in
-            ApiManager.request(.gif, ["weather": weather], { [weak self] (responseObject, success, error) in
-                if let response = responseObject as? [String: Any] {
-                    self?.performSegue(withIdentifier: "gallery.toViewGif", sender: response["gif"])
+            let hud = JGProgressHUD(style: .dark)
+            hud.textLabel.text = "Loading gif..."
+            hud.show(in: self.view)
+            APIManager.loadGif(weather: weather, completion: { [weak self] (gif, error) in
+                if let error = error {
+                    hud.textLabel.text = "Error"
+                    hud.detailTextLabel.text = error.localizedDescription
+                    hud.dismiss(afterDelay: 4, animated: true)
+                    self?.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+                } else if let gif = gif {
+                    hud.dismiss(afterDelay: 1, animated: true)
+                    self?.performSegue(withIdentifier: "gallery.toViewGif", sender: gif.gif)
                 }
             })
         }
@@ -57,17 +105,20 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        if topSegmentedControl.selectedSegmentIndex == 0 {
+            return images.count
+        } else {
+            return gifs.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width =  (UIScreen.main.bounds.width - 40 ) / 2
+        let width =  (UIScreen.main.bounds.width - 30) / 2
         return CGSize(width: width, height: width)
     }
     
@@ -75,10 +126,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCellID, for: indexPath) as! GalleryCollectionViewCell
         
-        let imageObject = images[indexPath.row]
-        
-        Nuke.loadImage(with: URL(string: imageObject["smallImagePath"] as! String )!, options: ImageLoadingOptions(placeholder: UIImage(named: "placeholder"), transition: .fadeIn(duration: 0.33)), into: cell.imageView)
-        
+        if topSegmentedControl.selectedSegmentIndex == 0 {
+            let imageObject = images[indexPath.row]
+            
+            cell.locationLabel.text = imageObject.parameters.address
+            cell.weatherLabel.text = imageObject.parameters.weather
+            
+            Nuke.loadImage(with: URL(string: imageObject.smallImagePath)!, options: ImageLoadingOptions(placeholder: UIImage(named: "placeholder"), transition: .fadeIn(duration: 0.33)), into: cell.gImageView)
+        } else {
+            let gifObject = gifs[indexPath.row]
+            cell.weatherLabel.text = gifObject.weather
+            cell.locationLabel.text = String(gifObject.id)
+            cell.gImageView.animate(withGIFURL: try! gifObject.path.asURL())
+        }
         return cell
     }
     

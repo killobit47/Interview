@@ -22,6 +22,7 @@ class LocalGalleryManager: NSObject, Router {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
+        
         return imagePicker
     }()
     
