@@ -59,13 +59,19 @@ class HomeViewController: UIViewController {
         hud.show(in: self.view)
         APIManager.loadAllPhotos { [weak self] (gallery, error) in
             if let error = error {
+                hud.indicatorView = JGProgressHUDErrorIndicatorView()
                 hud.textLabel.text = "Error"
                 hud.detailTextLabel.text = error.localizedDescription
-                hud.dismiss(afterDelay: 4, animated: true)
+                hud.dismiss(afterDelay: 6, animated: true)
             } else if let gallery = gallery {
+                hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                 hud.dismiss(afterDelay: 1, animated: true)
-                self?.images = gallery.images
-                self?.gifs = gallery.gifs
+                if let images = gallery.images {
+                    self?.images = images
+                }
+                if let gifs = gallery.gifs {
+                    self?.gifs = gifs
+                }
             }
             self?.refreshControl.endRefreshing()
         }
@@ -84,11 +90,12 @@ class HomeViewController: UIViewController {
             hud.show(in: self.view)
             APIManager.loadGif(weather: weather, completion: { [weak self] (gif, error) in
                 if let error = error {
+                    hud.indicatorView = JGProgressHUDErrorIndicatorView()
                     hud.textLabel.text = "Error"
                     hud.detailTextLabel.text = error.localizedDescription
-                    hud.dismiss(afterDelay: 4, animated: true)
-                    self?.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+                    hud.dismiss(afterDelay: 6, animated: true)
                 } else if let gif = gif {
+                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                     hud.dismiss(afterDelay: 1, animated: true)
                     self?.performSegue(withIdentifier: "gallery.toViewGif", sender: gif.gif)
                 }
@@ -99,7 +106,13 @@ class HomeViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gallery.toViewGif" {
+        if segue.identifier == Segue.gallerySegue.toViewImage.rawValue {
+            if let destination = segue.destination as? GifViewerViewController, let url = URL(string: sender as! String) {
+                destination.imageLink = url
+            }
+        }
+        else if segue.identifier == Segue.gallerySegue.toViewGif.rawValue {
+            
             if let destination = segue.destination as? GifViewerViewController, let url = URL(string: sender as! String) {
                 destination.gifLink = url
             }
@@ -142,6 +155,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if topSegmentedControl.selectedSegmentIndex == 0 {
+            let imageObject = images[indexPath.row]
+            performSegue(withIdentifier: Segue.gallerySegue.toViewImage.rawValue, sender: imageObject.smallImagePath)
+        } else {
+            let gifObject = gifs[indexPath.row]
+            performSegue(withIdentifier: Segue.gallerySegue.toViewGif.rawValue, sender: gifObject.path)
+        }
+    }
 }

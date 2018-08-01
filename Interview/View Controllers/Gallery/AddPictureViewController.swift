@@ -44,17 +44,21 @@ class AddPictureViewController: UIViewController {
         let description = descriptionTextField.text
         
         if let image = image, let imageDate = UIImageJPEGRepresentation(image, 0.5) {
-            let hud = JGProgressHUD(style: .dark)
-            hud.textLabel.text = "Uploading..."
-            hud.show(in: self.view)
             
-            LocationManager.shared.getLocation { (location) in
+            LocationManager.shared.getLocation { [weak self] (location) in
+                let hud = JGProgressHUD(style: .dark)
+                hud.textLabel.text = "Uploading..."
+                if let view = self?.view {
+                    hud.show(in: view)
+                }
                 APIManager.uploadPhoto(image: imageDate, description: description, hashtag: hashtag, latitude: CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude), completion: { [weak self] (image, error) in
                     if let error = error {
+                        hud.indicatorView = JGProgressHUDErrorIndicatorView()
                         hud.textLabel.text = "Error"
                         hud.detailTextLabel.text = error.localizedDescription
-                        hud.dismiss(afterDelay: 4, animated: true)
+                        hud.dismiss(afterDelay: 6, animated: true)
                     } else {
+                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                         hud.dismiss(animated: true)
                         NotificationCenter.default.post(name: NeedsRefteshCollectionViewNotification, object: nil)
                         self?.navigationController?.popViewController(animated: true)

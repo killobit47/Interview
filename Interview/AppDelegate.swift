@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HockeySDK
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
+        BITHockeyManager.shared().configure(withIdentifier: "3a6665df14cf4889800bd899d7eb3021")
+
+        BITHockeyManager.shared().start()
+        BITHockeyManager.shared().authenticator.authenticateInstallation()
 
         return true
     }

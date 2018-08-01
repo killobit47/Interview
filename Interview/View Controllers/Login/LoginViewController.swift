@@ -28,12 +28,14 @@ class LoginViewController: UIViewController {
             hud.show(in: self.view)
             APIManager.login(email: email, password: password) { [weak self] (user, error) in
                 if let error = error {
+                    hud.indicatorView = JGProgressHUDErrorIndicatorView()
                     hud.textLabel.text = "Error"
                     hud.detailTextLabel.text = error.localizedDescription
-                    hud.dismiss(afterDelay: 4, animated: true)
+                    hud.dismiss(afterDelay: 6, animated: true)
                 } else if let _ = user {
+                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                     hud.dismiss(animated: true)
-                    self?.performSegue(withIdentifier: Segue.loginSegue.toGallery.rawValue, sender: nil)
+                    self?.performSegue(withIdentifier: Segue.siginSegue.toGallery.rawValue , sender: nil)
                 }
             }
         } else {

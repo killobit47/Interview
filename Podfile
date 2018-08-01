@@ -11,6 +11,7 @@ target 'Interview' do
   pod 'Gifu', '~> 3.1'
   pod 'IQKeyboardManagerSwift'
   pod 'JGProgressHUD'
+  pod 'HockeySDK'
 
   # Pods for Interview
 

@@ -92,6 +92,7 @@
                         <outlet property="collectionView" destination="v1c-rm-yUS" id="Z7m-IB-mbd"/>
                         <outlet property="topSegmentedControl" destination="YDW-1d-fDa" id="xgE-r5-3WN"/>
                         <segue destination="G7H-Nx-BRD" kind="presentation" identifier="gallery.toViewGif" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="Nde-OG-NSx"/>
+                        <segue destination="G7H-Nx-BRD" kind="presentation" identifier="gallery.toViewImage" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="VdC-fy-8ww"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dj3-9N-3ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -227,4 +228,7 @@
     <resources>
         <image name="placeholder" width="1040" height="584"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="VdC-fy-8ww"/>
+    </inferredMetricsTieBreakers>
 </document>

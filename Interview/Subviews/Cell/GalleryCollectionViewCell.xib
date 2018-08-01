@@ -23,20 +23,23 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="K5K-1j-dzz">
                         <rect key="frame" x="8" y="8" width="352" height="291"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-Xb-5QE" customClass="GIFImageView" customModule="Gifu">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="tqC-Xb-5QE" customClass="GIFImageView" customModule="Gifu">
                                 <rect key="frame" x="0.0" y="0.0" width="352" height="195.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tqC-Xb-5QE" secondAttribute="height" multiplier="1.8:1" id="D5L-KM-d0f"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4tI-rS-XwB">
-                                <rect key="frame" x="0.0" y="201.5" width="64.5" height="24"/>
+                                <rect key="frame" x="0.0" y="201.5" width="64.5" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="uY8-fX-kLI"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="100" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UnN-hY-VAe">
-                                <rect key="frame" x="0.0" y="231.5" width="65.5" height="59.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="100" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="100" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UnN-hY-VAe">
+                                <rect key="frame" x="0.0" y="229.5" width="65.5" height="61.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -62,4 +65,7 @@
             <point key="canvasLocation" x="212" y="119.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="placeholder" width="1040" height="584"/>
+    </resources>
 </document>

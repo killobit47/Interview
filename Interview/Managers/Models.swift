@@ -14,16 +14,11 @@ import CoreGraphics
 struct User: Codable {
     let token: String
     let avatar: String
-    
-    enum CodingKeys: String, CodingKey {
-        case token
-        case avatar
-    }
 }
 
 struct Gallery: Codable {
-    let gifs: [GGif]
-    let images: [GImage]
+    let gifs: [GGif]?
+    let images: [GImage]?
     
     enum CodingKeys: String, CodingKey {
         case gifs = "gif"

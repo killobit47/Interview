@@ -54,7 +54,7 @@ class LocalGalleryManager: NSObject, Router {
         } else {
             if let block = completionBlock {
                 block(nil, .noAccess("to gallery"))
-                openApplicationSettings()
+                openApplicationSettingsWithAlert(message: "Need access to gallery")
             }
         }
     }
@@ -68,7 +68,7 @@ class LocalGalleryManager: NSObject, Router {
         } else {
             if let block = completionBlock {
                 block(nil, .noAccess("to camera"))
-                openApplicationSettings()
+                openApplicationSettingsWithAlert(message: "Need access to camera")
             }
         }
     }

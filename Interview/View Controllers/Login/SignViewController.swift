@@ -11,7 +11,7 @@ import JGProgressHUD
 
 
 class SignViewController: UIViewController {
-
+    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,7 +22,7 @@ class SignViewController: UIViewController {
             avatarImageView.image = avatar
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -35,12 +35,14 @@ class SignViewController: UIViewController {
                 let hud = JGProgressHUD(style: .dark)
                 hud.textLabel.text = "I sign up."
                 hud.show(in: self.view)
-                    APIManager.signUP(username: username, email: email, password: password, avatar: imageDate) { [weak self] (user, error) in
+                APIManager.signUP(username: username, email: email, password: password, avatar: imageDate) { [weak self] (user, error) in
                     if let error = error {
+                        hud.indicatorView = JGProgressHUDErrorIndicatorView()
                         hud.textLabel.text = "Error"
                         hud.detailTextLabel.text = error.localizedDescription
-                        hud.dismiss(afterDelay: 4, animated: true)
+                        hud.dismiss(afterDelay: 6, animated: true)
                     } else if let _ = user {
+                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                         hud.dismiss(animated: true)
                         self?.performSegue(withIdentifier: Segue.siginSegue.toGallery.rawValue , sender: nil)
                     }
@@ -59,3 +61,4 @@ class SignViewController: UIViewController {
         }
     }
 }
+

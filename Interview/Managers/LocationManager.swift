@@ -49,13 +49,21 @@ class LocationManager: NSObject, Router {
             if authorized {
                 self?.manager.startUpdatingLocation()
             } else {
-                self?.openApplicationSettings()
+                self?.openApplicationSettingsWithAlert(message: "Application need access to location")
             }
         }
     }
     
     func getLocation(_ completion: @escaping(getLocationBlock)) {
-        locationBlock = completion
+        checkCLPermission { [weak self] (authorized) in
+            if authorized {
+                self?.startUpdatingLocation()
+                self?.locationBlock = completion
+
+            } else {
+                self?.openApplicationSettingsWithAlert(message: "Application need access to location")
+            }
+        }
     }
 }
 

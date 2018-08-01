@@ -15,7 +15,7 @@ enum APIError: Error {
     
     var localizedDescription: String {
         get {
-            var locDesc = "Something went wrong"
+            var locDesc = "Something went wrong "
             switch self {
             case .somethingWentWrong(let descriptions):
                 locDesc += descriptions

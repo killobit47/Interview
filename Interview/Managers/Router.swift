@@ -23,13 +23,14 @@ enum Segue {
     enum gallerySegue: String {
         case toAddNewImage = "gallery.toAddNewImage"
         case toViewGif = "gallery.toViewGif"
+        case toViewImage = "gallery.toViewImage"
     }
 }
 
 protocol Router {}
 
 extension Router {
-
+    
     typealias completion = () -> Void
     
     var topViewController: UIViewController {
@@ -54,6 +55,14 @@ extension Router {
         if let url = URL(string: UIApplicationOpenSettingsURLString) {
             UIApplication.shared.open(url)
         }
+    }
+    
+    func openApplicationSettingsWithAlert(message:String) {
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+            self.openApplicationSettings()
+        }))
+        self.show(viewController: alert, animated: true)
     }
     
     func lounchSplashView() {
