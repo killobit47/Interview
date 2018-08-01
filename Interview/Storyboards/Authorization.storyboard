@@ -20,15 +20,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fn7-Qi-gJi">
-                                <rect key="frame" x="162.5" y="621" width="50" height="30"/>
-                                <state key="normal" title="SignUp"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fn7-Qi-gJi" customClass="IButton" customModule="Interview" customModuleProvider="target">
+                                <rect key="frame" x="97.5" y="591" width="180" height="36"/>
+                                <color key="backgroundColor" red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="B7Z-FS-JeG"/>
+                                    <constraint firstAttribute="height" constant="36" id="hgE-Ca-5bu"/>
+                                </constraints>
+                                <state key="normal" title="SignUp">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="enU-1S-dHp" kind="show" identifier="login.toSignUp" id="ctZ-9X-u7o"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LNn-fs-mWi">
-                                <rect key="frame" x="62.5" y="80" width="250" height="122"/>
+                                <rect key="frame" x="62.5" y="80" width="250" height="76"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tkU-z5-MXu">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
@@ -48,22 +60,36 @@
                                             <outlet property="delegate" destination="MXM-E6-KYE" id="2vu-tp-Sz0"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYv-dU-Y5j">
-                                        <rect key="frame" x="0.0" y="92" width="250" height="30"/>
-                                        <state key="normal" title="Login"/>
-                                        <connections>
-                                            <action selector="didTapLoginButton:" destination="MXM-E6-KYE" eventType="touchUpInside" id="SpL-Hr-Z1R"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYv-dU-Y5j" customClass="IButton" customModule="Interview" customModuleProvider="target">
+                                <rect key="frame" x="97.5" y="172" width="180" height="36"/>
+                                <color key="backgroundColor" red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="b3q-NJ-ycH"/>
+                                    <constraint firstAttribute="height" constant="36" id="rOD-Wo-edN"/>
+                                </constraints>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapLoginButton:" destination="MXM-E6-KYE" eventType="touchUpInside" id="SpL-Hr-Z1R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LNn-fs-mWi" firstAttribute="top" secondItem="nLi-7F-oYU" secondAttribute="top" constant="16" id="5IX-Ig-H67"/>
                             <constraint firstItem="LNn-fs-mWi" firstAttribute="centerX" secondItem="qI4-De-jBk" secondAttribute="centerX" id="Mom-ew-JrT"/>
                             <constraint firstItem="Fn7-Qi-gJi" firstAttribute="centerX" secondItem="qI4-De-jBk" secondAttribute="centerX" id="ZKz-Gb-xx2"/>
-                            <constraint firstItem="nLi-7F-oYU" firstAttribute="bottom" secondItem="Fn7-Qi-gJi" secondAttribute="bottom" constant="16" id="d6l-WQ-Kxh"/>
+                            <constraint firstItem="eYv-dU-Y5j" firstAttribute="centerX" secondItem="qI4-De-jBk" secondAttribute="centerX" id="Zgj-tM-PPQ"/>
+                            <constraint firstItem="eYv-dU-Y5j" firstAttribute="top" secondItem="LNn-fs-mWi" secondAttribute="bottom" constant="16" id="anb-N9-XAF"/>
+                            <constraint firstItem="nLi-7F-oYU" firstAttribute="bottom" secondItem="Fn7-Qi-gJi" secondAttribute="bottom" constant="40" id="d6l-WQ-Kxh"/>
                             <constraint firstItem="LNn-fs-mWi" firstAttribute="width" secondItem="qI4-De-jBk" secondAttribute="width" multiplier="1:1.5" id="iLd-Ev-wkn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nLi-7F-oYU"/>
@@ -88,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Lkd-vd-93M">
-                                <rect key="frame" x="62.5" y="80" width="250" height="434"/>
+                                <rect key="frame" x="62.5" y="80" width="250" height="388"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="q9l-Wn-CBf" customClass="IAvatarImageView" customModule="Interview" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
@@ -118,19 +144,33 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mg5-aM-bQM">
-                                        <rect key="frame" x="0.0" y="404" width="250" height="30"/>
-                                        <state key="normal" title="SignUp"/>
-                                        <connections>
-                                            <action selector="didTapSignUpButton:" destination="enU-1S-dHp" eventType="touchUpInside" id="7Mh-qB-NdJ"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mg5-aM-bQM" customClass="IButton" customModule="Interview" customModuleProvider="target">
+                                <rect key="frame" x="97" y="484" width="180" height="36"/>
+                                <color key="backgroundColor" red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="yiS-To-pJp"/>
+                                    <constraint firstAttribute="width" constant="180" id="zSS-LQ-uaY"/>
+                                </constraints>
+                                <state key="normal" title="SignUp">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapSignUpButton:" destination="enU-1S-dHp" eventType="touchUpInside" id="7Mh-qB-NdJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Lkd-vd-93M" firstAttribute="centerX" secondItem="uwc-a9-5bq" secondAttribute="centerX" id="7Pa-8X-LGo"/>
+                            <constraint firstItem="Mg5-aM-bQM" firstAttribute="top" secondItem="Lkd-vd-93M" secondAttribute="bottom" constant="16" id="EzQ-39-ois"/>
+                            <constraint firstItem="Mg5-aM-bQM" firstAttribute="centerX" secondItem="uwc-a9-5bq" secondAttribute="centerX" id="YnU-WS-rfD"/>
                             <constraint firstItem="Lkd-vd-93M" firstAttribute="top" secondItem="eRb-vD-hrd" secondAttribute="top" constant="16" id="bV0-2F-eEk"/>
                             <constraint firstItem="Lkd-vd-93M" firstAttribute="width" secondItem="uwc-a9-5bq" secondAttribute="width" multiplier="1:1.5" id="iEv-o9-kPJ"/>
                         </constraints>
@@ -176,13 +216,13 @@
                 <viewControllerPlaceholder storyboardName="Gallery" id="hVG-dD-br4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Pm-9K-8sN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1709" y="200"/>
+            <point key="canvasLocation" x="1782" y="85"/>
         </scene>
     </scenes>
     <resources>
         <image name="placeholder_avatar" width="600" height="557"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="maK-87-2Uq"/>
+        <segue reference="STq-Lf-t4J"/>
     </inferredMetricsTieBreakers>
 </document>

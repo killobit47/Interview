@@ -17,7 +17,16 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="HYW-Mg-WgU">
+                                <rect key="frame" x="22" y="146" width="276" height="276"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="HYW-Mg-WgU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Uy-dP-3pN"/>
+                            <constraint firstItem="HYW-Mg-WgU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yJr-Eg-EfD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -46,4 +55,7 @@
             <point key="canvasLocation" x="254" y="150"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="276" height="276"/>
+    </resources>
 </document>
