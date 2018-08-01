@@ -34,12 +34,20 @@ class SignViewController: UIViewController {
             if let avatar = avatar, let imageDate = UIImageJPEGRepresentation(avatar, 0.5) {
                 let hud = JGProgressHUD(style: .dark)
                 hud.textLabel.text = "I sign up."
-                hud.show(in: self.view)
+                if let window = self.view {
+                    hud.show(in: window)
+                } else {
+                    hud.show(in: self.view)
+                }
                 APIManager.signUP(username: username, email: email, password: password, avatar: imageDate) { [weak self] (user, error) in
                     if let error = error {
                         hud.indicatorView = JGProgressHUDErrorIndicatorView()
                         hud.textLabel.text = "Error"
-                        hud.detailTextLabel.text = error.localizedDescription
+                        if let apierror = error as? APIError {
+                            hud.detailTextLabel.text = apierror.localizedDescription
+                        } else {
+                            hud.detailTextLabel.text = error.localizedDescription
+                        }
                         hud.dismiss(afterDelay: 6, animated: true)
                     } else if let _ = user {
                         hud.indicatorView = JGProgressHUDSuccessIndicatorView()

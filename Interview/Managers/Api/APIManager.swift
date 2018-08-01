@@ -12,13 +12,18 @@ import CodableAlamofire
 
 enum APIError: Error {
     case somethingWentWrong(String)
-    
+    case customDescription(String)
+    case largeDescription([String])
     var localizedDescription: String {
         get {
             var locDesc = "Something went wrong "
             switch self {
             case .somethingWentWrong(let descriptions):
                 locDesc += descriptions
+            case .customDescription(let description):
+                return description
+            case .largeDescription(let errors):
+                return errors.joined(separator: " ")
             }
             return locDesc
         }

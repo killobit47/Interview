@@ -61,7 +61,11 @@ class HomeViewController: UIViewController {
             if let error = error {
                 hud.indicatorView = JGProgressHUDErrorIndicatorView()
                 hud.textLabel.text = "Error"
-                hud.detailTextLabel.text = error.localizedDescription
+                if let apierror = error as? APIError {
+                    hud.detailTextLabel.text = apierror.localizedDescription
+                } else {
+                    hud.detailTextLabel.text = error.localizedDescription
+                }
                 hud.dismiss(afterDelay: 6, animated: true)
             } else if let gallery = gallery {
                 hud.indicatorView = JGProgressHUDSuccessIndicatorView()
@@ -92,7 +96,11 @@ class HomeViewController: UIViewController {
                 if let error = error {
                     hud.indicatorView = JGProgressHUDErrorIndicatorView()
                     hud.textLabel.text = "Error"
-                    hud.detailTextLabel.text = error.localizedDescription
+                    if let apierror = error as? APIError {
+                        hud.detailTextLabel.text = apierror.localizedDescription
+                    } else {
+                        hud.detailTextLabel.text = error.localizedDescription
+                    }
                     hud.dismiss(afterDelay: 6, animated: true)
                 } else if let gif = gif {
                     hud.indicatorView = JGProgressHUDSuccessIndicatorView()
