@@ -29,35 +29,33 @@ class SignViewController: UIViewController {
     
     @IBAction func didTapSignUpButton(_ sender: Any) {
         let username = userNameTextField.text
-        if let email = emailTextField.text, let password = passwordTextField.text, email.isEmail, password.isValidPass {
-            
-            if let avatar = avatar, let imageDate = UIImageJPEGRepresentation(avatar, 0.5) {
-                let hud = JGProgressHUD(style: .dark)
-                hud.textLabel.text = "I sign up."
-                if let window = self.view {
-                    hud.show(in: window)
-                } else {
-                    hud.show(in: self.view)
-                }
-                APIManager.signUP(username: username, email: email, password: password, avatar: imageDate) { [weak self] (user, error) in
-                    if let error = error {
-                        hud.indicatorView = JGProgressHUDErrorIndicatorView()
-                        hud.textLabel.text = "Error"
-                        if let apierror = error as? APIError {
-                            hud.detailTextLabel.text = apierror.localizedDescription
-                        } else {
-                            hud.detailTextLabel.text = error.localizedDescription
-                        }
-                        hud.dismiss(afterDelay: 6, animated: true)
-                    } else if let _ = user {
-                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                        hud.dismiss(animated: true)
-                        self?.performSegue(withIdentifier: Segue.siginSegue.toGallery.rawValue , sender: nil)
+        if let email = emailTextField.text, let password = passwordTextField.text, email.isEmail, password.isValidPass, let avatar = avatar, let imageDate = UIImageJPEGRepresentation(avatar, 0.5) {
+
+            let hud = JGProgressHUD(style: .dark)
+            hud.textLabel.text = "I sign up."
+            if let window = self.view {
+                hud.show(in: window)
+            } else {
+                hud.show(in: self.view)
+            }
+            APIManager.signUP(username: username, email: email, password: password, avatar: imageDate) { [weak self] (user, error) in
+                if let error = error {
+                    hud.indicatorView = JGProgressHUDErrorIndicatorView()
+                    hud.textLabel.text = "Error"
+                    if let apierror = error as? APIError {
+                        hud.detailTextLabel.text = apierror.localizedDescription
+                    } else {
+                        hud.detailTextLabel.text = error.localizedDescription
                     }
+                    hud.dismiss(afterDelay: 2.5, animated: true)
+                } else if let _ = user {
+                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    hud.dismiss(animated: true)
+                    self?.performSegue(withIdentifier: Segue.siginSegue.toGallery.rawValue , sender: nil)
                 }
             }
         } else {
-            showAlert(withTitle: "Error", andMessage: "Please complete all fields.")
+            showAlert(withTitle: "Error", andMessage: "Please complete all fields and avatar.")
         }
     }
     
@@ -69,4 +67,3 @@ class SignViewController: UIViewController {
         }
     }
 }
-

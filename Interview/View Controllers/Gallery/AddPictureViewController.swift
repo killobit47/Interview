@@ -60,7 +60,7 @@ class AddPictureViewController: UIViewController {
                         } else {
                             hud.detailTextLabel.text = error.localizedDescription
                         }
-                        hud.dismiss(afterDelay: 6, animated: true)
+                        hud.dismiss(afterDelay: 2.5, animated: true)
                     } else {
                         hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                         hud.dismiss(animated: true)

@@ -46,11 +46,16 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Zur-g8-0V9">
+                        <rect key="frame" x="174" y="113.5" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="K5K-1j-dzz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Hma-L8-dES"/>
+                <constraint firstItem="Zur-g8-0V9" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-30" id="Ozi-Xj-HAJ"/>
+                <constraint firstItem="Zur-g8-0V9" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Ufd-j9-1wd"/>
                 <constraint firstAttribute="trailing" secondItem="K5K-1j-dzz" secondAttribute="trailing" constant="8" id="XF8-8v-wbD"/>
                 <constraint firstAttribute="bottom" secondItem="K5K-1j-dzz" secondAttribute="bottom" constant="8" id="eKi-UX-eyC"/>
                 <constraint firstItem="K5K-1j-dzz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="fP5-Io-Mhn"/>
@@ -58,6 +63,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="368" height="307"/>
             <connections>
+                <outlet property="activityIndicator" destination="Zur-g8-0V9" id="epP-MH-ke8"/>
                 <outlet property="gImageView" destination="tqC-Xb-5QE" id="KoG-WN-kxD"/>
                 <outlet property="locationLabel" destination="UnN-hY-VAe" id="hdc-Qo-pSA"/>
                 <outlet property="weatherLabel" destination="4tI-rS-XwB" id="Gc5-oE-ifs"/>
@@ -66,6 +72,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="placeholder" width="1040" height="584"/>
+        <image name="placeholder" width="520" height="292"/>
     </resources>
 </document>

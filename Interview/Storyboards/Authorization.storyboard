@@ -220,7 +220,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="placeholder_avatar" width="600" height="557"/>
+        <image name="placeholder_avatar" width="300" height="278"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="STq-Lf-t4J"/>

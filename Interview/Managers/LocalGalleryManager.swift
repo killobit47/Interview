@@ -60,10 +60,10 @@ class LocalGalleryManager: NSObject, Router {
     }
     
     private func getImageFromCamera(completion: @escaping(completion)) {
-        completionBlock = completion
-        imagePicker.sourceType = .camera
-        
+
         if UIImagePickerController.isSourceTypeAvailable(.camera){
+            completionBlock = completion
+            imagePicker.sourceType = .camera
             show(viewController: imagePicker, animated: true)
         } else {
             if let block = completionBlock {

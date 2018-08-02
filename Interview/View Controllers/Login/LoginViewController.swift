@@ -35,11 +35,11 @@ class LoginViewController: UIViewController {
                     } else {
                         hud.detailTextLabel.text = error.localizedDescription
                     }
-                    hud.dismiss(afterDelay: 6, animated: true)
+                    hud.dismiss(afterDelay: 2.5, animated: true)
                 } else if let _ = user {
                     hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                     hud.dismiss(animated: true)
-                    self?.performSegue(withIdentifier: Segue.siginSegue.toGallery.rawValue , sender: nil)
+                    self?.performSegue(withIdentifier: Segue.loginSegue.toGallery.rawValue , sender: nil)
                 }
             }
         } else {

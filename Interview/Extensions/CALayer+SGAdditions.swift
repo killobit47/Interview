@@ -8,8 +8,6 @@
 
 
 import Foundation
-import CoreGraphics
-import QuartzCore
 import UIKit
 
 extension CALayer {

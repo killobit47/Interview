@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
                 } else {
                     hud.detailTextLabel.text = error.localizedDescription
                 }
-                hud.dismiss(afterDelay: 6, animated: true)
+                hud.dismiss(afterDelay: 2.5, animated: true)
             } else if let gallery = gallery {
                 hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                 hud.dismiss(afterDelay: 1, animated: true)
@@ -101,7 +101,7 @@ class HomeViewController: UIViewController {
                     } else {
                         hud.detailTextLabel.text = error.localizedDescription
                     }
-                    hud.dismiss(afterDelay: 6, animated: true)
+                    hud.dismiss(afterDelay: 2.5, animated: true)
                 } else if let gif = gif {
                     hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                     hud.dismiss(afterDelay: 1, animated: true)
@@ -154,11 +154,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.weatherLabel.text = imageObject.parameters.weather
             
             Nuke.loadImage(with: URL(string: imageObject.smallImagePath)!, options: ImageLoadingOptions(placeholder: UIImage(named: "placeholder"), transition: .fadeIn(duration: 0.33)), into: cell.gImageView)
+            cell.activityIndicator.stopAnimating()
         } else {
             let gifObject = gifs[indexPath.row]
             cell.weatherLabel.text = gifObject.weather
             cell.locationLabel.text = String(gifObject.id)
-            cell.gImageView.animate(withGIFURL: try! gifObject.path.asURL())
+
+            do {
+                cell.activityIndicator.startAnimating()
+                let url = try gifObject.path.asURL()
+                cell.gImageView.prepareForAnimation(withGIFURL: url, loopCount: 0) {
+                    DispatchQueue.main.async {
+                        cell.activityIndicator.stopAnimating()
+                        cell.gImageView.startAnimatingGIF()
+                    }
+                }
+            } catch {
+                cell.activityIndicator.stopAnimating()
+                cell.gImageView.stopAnimatingGIF()
+            }
         }
         return cell
     }

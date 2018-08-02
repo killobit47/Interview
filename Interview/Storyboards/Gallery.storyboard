@@ -128,10 +128,14 @@
                                     <action selector="didTapHideButton:" destination="G7H-Nx-BRD" eventType="touchUpInside" id="KE2-dd-qeM"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="nhS-TA-Yct">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.67000000000000004" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wyf-jk-XIE" firstAttribute="top" secondItem="eXv-Aq-jgv" secondAttribute="top" id="16T-sB-Cx4"/>
+                            <constraint firstItem="nhS-TA-Yct" firstAttribute="centerY" secondItem="T1e-wp-YZh" secondAttribute="centerY" id="35F-Ek-whK"/>
                             <constraint firstItem="Ax2-a6-V1M" firstAttribute="leading" secondItem="LOI-ZO-Cgm" secondAttribute="leading" constant="36" id="4Sg-ik-raJ"/>
                             <constraint firstAttribute="bottom" secondItem="wyf-jk-XIE" secondAttribute="bottom" id="77y-gh-Nz3"/>
                             <constraint firstItem="wyf-jk-XIE" firstAttribute="leading" secondItem="LOI-ZO-Cgm" secondAttribute="leading" id="CvU-bH-yk0"/>
@@ -139,12 +143,14 @@
                             <constraint firstItem="T1e-wp-YZh" firstAttribute="centerX" secondItem="eXv-Aq-jgv" secondAttribute="centerX" id="N84-GL-Z4l"/>
                             <constraint firstAttribute="trailing" secondItem="wyf-jk-XIE" secondAttribute="trailing" id="bMO-HF-FRT"/>
                             <constraint firstItem="T1e-wp-YZh" firstAttribute="centerX" secondItem="eXv-Aq-jgv" secondAttribute="centerX" id="hz8-gc-94o"/>
+                            <constraint firstItem="nhS-TA-Yct" firstAttribute="centerX" secondItem="T1e-wp-YZh" secondAttribute="centerX" id="oPA-mQ-mHW"/>
                             <constraint firstItem="T1e-wp-YZh" firstAttribute="width" secondItem="eXv-Aq-jgv" secondAttribute="width" multiplier="0.8" id="s9Z-lW-X6g"/>
                             <constraint firstItem="Ax2-a6-V1M" firstAttribute="top" secondItem="LOI-ZO-Cgm" secondAttribute="top" constant="36" id="z8G-PN-01w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LOI-ZO-Cgm"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="nhS-TA-Yct" id="zT8-Ea-sk4"/>
                         <outlet property="gifImageView" destination="T1e-wp-YZh" id="sed-YA-Pzy"/>
                     </connections>
                 </viewController>
@@ -226,7 +232,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="placeholder" width="1040" height="584"/>
+        <image name="placeholder" width="520" height="292"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VdC-fy-8ww"/>
